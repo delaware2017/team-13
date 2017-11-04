@@ -34,11 +34,6 @@ def do_admin_login():
     return home()
 
 
-@app.route('/save', methods = ['POST'])
-def save_application():
-    
-
-
 
 @app.route("/logout")
 def logout():
