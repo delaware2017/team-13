@@ -7,6 +7,12 @@ engine = create_engine('sqlite:///users.db', echo=True)
 
 app = Flask(__name__)
 
+
+@app.route('/register',methods=['POST'])
+def new_user():
+		POST_USERNAME = str(request.form['username'])
+		POST_PASSWORD = str(request.form['password'])
+
 @app.route('/')
 def home():
     if not session.get('logged_in'):
