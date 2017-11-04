@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contact Information</title>
+  </head>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{url_for('static',filename='bootstrap/css/font-awesome.min.css')}}" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <style>
+    body {
+      padding-top: 80px;
+    }
+    @media (min-width: 992px) {
+      body {
+        padding-top: 80px;
+      }
+    }
+
+  </style>
+
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">HSRC Student Login</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <header>
+      <div class="container">
+        <h1 class="logo">Latin American Community Center</h1>
+        <p><strong>Website: </strong>www.thelatincenter.org<p>
+        <p><strong>Facebook: </strong>facebook.com/pages/Latin-American-Community-Center/66431910957<p>
+        <p><strong>Twitter: </strong>https://www.twitter.com/thelatincenter<p>
+        <p><strong>Youtube: </strong>https://www.youtube.com/thelatincenter<p>
+      </div>
+    </header>
+
+    <div class="container">
+      <h4 class="logo">Mission: </h4>
+      <p>LACC’s mission is to empower the Latino Community through education, advocacy, partnerships and exceptional services.
+          Our vision is to eliminate the achievement gap for Latinos in Delaware.  LACC offers educational services for youth
+          and their families including early development care, before and after school programs, siummer camp, high school credit
+          recovert and recognition programs for middle and high school students, as well as adult eduation (i.e. ESL).  LACC also
+          offers empowerment services including mental health services, short and long term case management, substance abuse prevention,
+          advocacy for victims of crime, financial coaching/workshops and more.</p>
+    </div>
+  </body>
+</html>

@@ -12,7 +12,7 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        return "Hello Boss!"
+        return render_template('application.html')
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
@@ -68,14 +68,14 @@ def save_application():
 
 
 
-
-
-
-
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
     return home()
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
