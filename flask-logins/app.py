@@ -10,10 +10,7 @@ app = Flask(__name__)
 
 @app.route('/register')
 def new_user():
-		# POST_USERNAME = str(request.form['username'])
-		# POST_PASSWORD = str(request.form['password'])
-		# dump()
-		return render_template('new_user.html')
+	return render_template('new_user.html')
 
 @app.route('/')
 def home():
@@ -24,22 +21,23 @@ def home():
 
 @app.route('/home')
 def home2():
-		session['logged_in'] = False
-		return render_template('login.html')
+	session['logged_in'] = False
+	return render_template('login.html')
 
 @app.route('/grading')
 def get_allusers():
-		Session = sessionmaker(bind=engine)
-		s = Session()
-		query = s.query(User)
-		users = query.all()
+	Session = sessionmaker(bind=engine)
+	s = Session()
+	query = s.query(User)
+	users = query.all()
+
+	return render_template('grading_page.html', data = users)
 
 
-		return render_template('grading_page.html', data = users)
-
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods = ['POST'])
 def do_admin_login():
 
+    session['logged_in'] = False
     POST_USERNAME = str(request.form['username'])
     POST_PASSWORD = str(request.form['password'])
 
@@ -50,16 +48,15 @@ def do_admin_login():
     if result:
         session['logged_in'] = True
         return render_template('application.html', data = result)
-
     else:
-	        return render_template('nominator_registration.html', data = result)
+	    return render_template('login.html', data = result)
 
     return home()
 
 
 @app.route('/save', methods = ['POST'])
 def save_application():
-    # print (request.form)
+    print (request.form)
     # print (data['firstName'][0])
     username = str(request.form['username'])
     firstName = str(request.form['firstName'])
@@ -70,7 +67,7 @@ def save_application():
 
     Session = sessionmaker(bind=engine)
     s = Session()
-    query = s.query(User).filter(User.firstName.in_([firstName]))
+    query = s.query(User).filter(User.username.in_([username]))
     result = query.first()
     session['logged_in'] = False
 
