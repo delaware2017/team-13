@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/register')
 def new_user():
-	return render_template('new_user.html')
+	return render_template('register.html')
 
 @app.route('/')
 def home():
@@ -36,10 +36,7 @@ def get_allusers():
 
 @app.route('/login', methods = ['POST'])
 def do_admin_login():
-<<<<<<< HEAD
-=======
 
->>>>>>> 5e5bff5f3e6a301b17e0e1e98c57ed1ec8d2e7a5
     session['logged_in'] = False
     POST_USERNAME = str(request.form['username'])
     POST_PASSWORD = str(request.form['password'])
@@ -52,11 +49,8 @@ def do_admin_login():
         session['logged_in'] = True
         return render_template('application.html', data = result)
     else:
-<<<<<<< HEAD
-	        return render_template('login.html', data = result)
-=======
-	    return render_template('login.html', data = result)
->>>>>>> 5e5bff5f3e6a301b17e0e1e98c57ed1ec8d2e7a5
+        return render_template('login.html', data = result)
+
 
     return home()
 
@@ -80,8 +74,8 @@ def save_application():
     session['logged_in'] = False
 
     if userType == "student":
-        user = User("student", username, "password", firstName, lastName, phoneNumber, email)
-        session.add(user)
+        user = User("student", username, "password", firstName, lastName, phoneNumber, email, "")
+        s.add(user)
 
     elif userType == "nominator":
         user = Nominator("nominator", username, "password", firstName, lastName, email,
@@ -89,12 +83,12 @@ def save_application():
          "Science" : ('Science' in categories),
          "Arts" : ('Arts' in categories),
          "Service" : ('Service' in categories),
-         "Athletics" : ('Athletics' in categories)})
-        session.add(user)
+         "Athletics" : ('Athletics' in categories)}, "")
+        s.add(user)
 
     else:
-        user = User("student", username, "password", firstName, lastName, phoneNumber, email)
-        session.add(user)
+        user = User("student", username, "password", firstName, lastName, phoneNumber, email, "")
+        s.add(user)
 
 
     if result:
