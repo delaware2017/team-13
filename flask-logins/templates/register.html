@@ -34,7 +34,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">HSRC Student Login</a>
+        <a class="navbar-brand" href="#">HSRC New User Registration</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -64,7 +64,7 @@
       <div class="row">
         <div class="col-lg-12 text-center">
         <font color="red">
-          <h1 class="mt-5" >HSRC Student Login</h1>
+          <h1 class="mt-5" >HSRC New User Registration</h1>
           </font>
           <p class="lead">Please register to create or review applications.</p>
           <!-- <ul class="list-unstyled">
@@ -77,21 +77,31 @@
 
     <div class = "container text-center">
       {% block body %}
-      {% if session['logged_in'] %}
-      <p>You're logged in already!</p>
-      {% else %}
-      <form action="/login" method="POST">
+      <form action="/save" method="POST">
         <input type="username" name="username" placeholder="Username">
+        <br />
         <input type="password" name="password" placeholder="Password">
-        <input type="text" name="first" placeholder="First Name">
-        <input type="text" name="last" placeholder="Last Name">
+        <br />
+        <input type="text" name="firstName" placeholder="First Name">
+        <br />
+        <input type="text" name="phoneNumber" placeholder="000-000-0000">
+        <br />
+        <input type="text" name="lastName" placeholder="Last Name">
+        <br />
         <input type="text" name="email" placeholder="E-Mail">
-        <input type="radio" name="account" value="Student" checked> Male<br>
-        <input type="radio" name="account" value="Grader"> Female<br>
-        <input type="radio" name="account" value="Nominator"> Other
+        <br />
+        <input type="radio" name="userType" value="student" checked> Student<br>
+        <input type="radio" name="userType" value="grader"> Grader<br>
+        <input type="radio" name="userType" value="nominator"> Nominator
+        <br />
+          <input type="checkbox" name="category" value="Atheletics" > Athletics
+          <input type="checkbox" name="category" value="Science"> Science
+          <input type="checkbox" name="category" value="Arts"> Arts
+          <input type="checkbox" name="category" value="Service"> Service
+          <input type="checkbox" name="category" value="Academics"> Academics
+        <br />
         <input type="submit" value="Register">
       </form>
-      {% endif %}
       {% endblock %}
     </div>
 

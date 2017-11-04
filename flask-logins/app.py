@@ -29,7 +29,7 @@ def home2():
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-
+    session['logged_in'] = False
     POST_USERNAME = str(request.form['username'])
     POST_PASSWORD = str(request.form['password'])
 
@@ -42,7 +42,7 @@ def do_admin_login():
         return render_template('application.html', data = result)
 
     else:
-	        return render_template('nominator_registration.html', data = result)
+	        return render_template('login.html', data = result)
 
     return home()
 
@@ -51,18 +51,37 @@ def do_admin_login():
 def save_application():
     # print (request.form)
     # print (data['firstName'][0])
+    print ("THIS IS THE DICT: " + str(dict(request.form)))
     username = str(request.form['username'])
     firstName = str(request.form['firstName'])
     lastName = str(request.form['lastName'])
     phoneNumber = str(request.form['phoneNumber'])
     email = str(request.form['email'])
-
-
+    userType = str(request.form['userType'])
+    categories = request.form['category']
     Session = sessionmaker(bind=engine)
     s = Session()
     query = s.query(User).filter(User.firstName.in_([firstName]))
     result = query.first()
     session['logged_in'] = False
+
+    if userType == "student":
+        user = User("student", username, "password", firstName, lastName, phoneNumber, email)
+        session.add(user)
+
+    elif userType == "nominator":
+        user = Nominator("nominator", username, "password", firstName, lastName, email,
+        {"Academic" : ('Academics' in categories),
+         "Science" : ('Science' in categories),
+         "Arts" : ('Arts' in categories),
+         "Service" : ('Service' in categories),
+         "Athletics" : ('Athletics' in categories)})
+        session.add(user)
+
+    else:
+        user = User("student", username, "password", firstName, lastName, phoneNumber, email)
+        session.add(user)
+
 
     if result:
         result.firstName = firstName
@@ -86,6 +105,14 @@ def logout():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@app.route('/register')
+def registration():
+    return render_template('register.html')
+
+@app.route('/nominate')
+def nominate():
+    return render_template('nominate.html')
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
