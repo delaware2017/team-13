@@ -14,6 +14,13 @@ def home():
     else:
         return render_template('application.html')
 
+@app.route('/home')
+def home2():
+		session['logged_in'] = False
+		return render_template('login.html')
+
+
+
 @app.route('/login', methods=['POST'])
 def do_admin_login():
 
@@ -29,7 +36,7 @@ def do_admin_login():
         return render_template('application.html', data = result)
 
     else:
-        flash('wrong password!')
+	        return render_template('nominator_registration.html', data = result)
 
     return home()
 
@@ -59,13 +66,10 @@ def save_application():
         s.commit()
         s.commit()
 
-
     else:
         flash('wrong password!')
 
-
     return render_template('login.html')
-
 
 
 @app.route("/logout")

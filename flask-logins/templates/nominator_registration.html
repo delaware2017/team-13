@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Main menu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap core CSS -->
+        <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{url_for('static',filename='bootstrap/css/font-awesome.min.css')}}" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+        <style>
+          body {
+            padding-top: 54px;
+          }
+          @media (min-width: 992px) {
+            body {
+              padding-top: 56px;
+            }
+          }
+
+        </style>
+    </head>
+
+    <body>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="#">HSRC Student Login</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+      <div class = "container">
+
+			<div class="jumbotron">
+				<h1>WELCOME {{ data.firstName }}! Please fill out the entire application.</h1>
+				<h6>Once you are done, click 'Submit'</h6>
+		    	<p>LACC’s mission is to empower the Latino Community through education, advocacy, partnerships and exceptional services.  Our vision is to eliminate the achievement gap for Latinos in Delaware.  LACC offers educational services for youth and their families including early development care, before and after school programs, siummer camp, high school credit recovert and recognition programs for middle and high school students, as well as adult eduation (i.e. ESL).</p>
+			</div>
+
+      <div class = "container text-center">
+        <p>
+          Continue your application!!!
+        </p>
+
+
+            <form action="/save" method="POST">
+              <input type="text" name="username" value= {{ data.username }}><br>
+              <input type="text" name="firstName" value= {{ data.firstName }}><br>
+              <input type="text" name="lastName" value= {{ data.lastName }}><br>
+              <input type="text" name="phoneNumber" value= {{ data.phoneNumber }}><br>
+              <input type="text" name="email" value= {{ data.email }}><br>
+              <input type="textarea" name="personalStatement" value= {{ data.personalStatement }}><br>
+              <input type="submit" value="Save Application">
+            </form>
+
+      </div>
+
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src = "{{ url_for('static', filename='jquery/jquery.min.js')}}"></script>
+    <script src = "{{ url_for('static', filename='bootstrap/js/bootstrap.min.js')}}"></script>
+
+    </body>
+</html>
