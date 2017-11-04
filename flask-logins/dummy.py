@@ -11,8 +11,6 @@ session = Session()
 
 <<<<<<< HEAD
 #first term determines user type (not shown here)
-user = User("admin", "password", "Atharva", "Bhat", "2404900575", "abhat98@gmail.com", "My name is Atharva!")
-=======
 user = User("student", "admin", "password", "Atharva", "Bhat", "2404900575", "abhat98@gmail.com", "My name is Atharva!")
 >>>>>>> 89bba69c17178427a535998cd9f62c7e09adde39
 session.add(user)
