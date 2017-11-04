@@ -8,10 +8,12 @@ engine = create_engine('sqlite:///users.db', echo=True)
 app = Flask(__name__)
 
 
-@app.route('/register',methods=['POST'])
+@app.route('/register')
 def new_user():
-		POST_USERNAME = str(request.form['username'])
-		POST_PASSWORD = str(request.form['password'])
+		# POST_USERNAME = str(request.form['username'])
+		# POST_PASSWORD = str(request.form['password'])
+		# dump()
+		return render_template('new_user.html')
 
 @app.route('/')
 def home():
