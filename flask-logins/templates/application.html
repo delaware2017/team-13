@@ -58,6 +58,7 @@
             Continue your application!!!
           </p>
           <form action="/save" method="POST">
+            <input type="text" name="username" value= {{ data.username }}><br>
             <input type="text" name="firstName" value= {{ data.firstName }}><br>
             <input type="text" name="lastName" value= {{ data.lastName }}><br>
             <input type="text" name="phoneNumber" value= {{ data.phoneNumber }}><br>
