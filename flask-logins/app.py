@@ -64,7 +64,6 @@ def save_application():
         flash('wrong password!')
 
 
-
     return render_template('login.html')
 
 
