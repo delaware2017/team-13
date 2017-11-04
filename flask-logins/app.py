@@ -34,6 +34,45 @@ def do_admin_login():
     return home()
 
 
+@app.route('/save', methods = ['POST'])
+def save_application():
+    # print (request.form)
+    # print (data['firstName'][0])
+    username = str(request.form['username'])
+    firstName = str(request.form['firstName'])
+    lastName = str(request.form['lastName'])
+    phoneNumber = str(request.form['phoneNumber'])
+    email = str(request.form['email'])
+
+
+    Session = sessionmaker(bind=engine)
+    s = Session()
+    query = s.query(User).filter(User.firstName.in_([firstName]))
+    result = query.first()
+    session['logged_in'] = False
+
+    if result:
+        result.firstName = firstName
+        result.lastName = lastName
+        result.phoneNumber = phoneNumber
+        result.email = email
+        s.commit()
+        s.commit()
+
+
+    else:
+        flash('wrong password!')
+
+
+
+    return render_template('login.html')
+
+
+
+
+
+
+
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
