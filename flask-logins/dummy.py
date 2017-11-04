@@ -9,6 +9,7 @@ engine = create_engine('sqlite:///users.db', echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
 
+#first term determines user type (not shown here)
 user = User("admin", "password", "Atharva", "Bhat", "2404900575", "abhat98@gmail.com", "My name is Atharva!")
 session.add(user)
 
