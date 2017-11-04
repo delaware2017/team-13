@@ -27,7 +27,15 @@ def home2():
 		session['logged_in'] = False
 		return render_template('login.html')
 
+@app.route('/grading')
+def get_allusers():
+		Session = sessionmaker(bind=engine)
+		s = Session()
+		query = s.query(User)
+		users = query.all()
 
+
+		return render_template('grading_page.html', data = users)
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
