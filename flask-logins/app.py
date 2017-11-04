@@ -47,12 +47,11 @@ def save_application():
 
     Session = sessionmaker(bind=engine)
     s = Session()
-    query = s.query(User).filter(User.username.in_([username]))
+    query = s.query(User).filter(User.firstName.in_([firstName]))
     result = query.first()
+    session['logged_in'] = False
 
     if result:
-
-        session['logged_in'] = False
         result.firstName = firstName
         result.lastName = lastName
         result.phoneNumber = phoneNumber
