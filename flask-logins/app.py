@@ -69,10 +69,6 @@ def save_application():
 
 
 
-
-
-
-
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
