@@ -5,7 +5,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
 
 engine = create_engine('sqlite:///users.db', echo=True)
+
 Base = declarative_base()
+
 
 ########################################################################
 class User(Base):
@@ -13,6 +15,7 @@ class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
+    user_type = Column(String)
     username = Column(String)
     password = Column(String)
     firstName = Column(String)
@@ -23,7 +26,7 @@ class User(Base):
 
 
     #----------------------------------------------------------------------
-    def __init__(self, username, password, firstName, lastName, phoneNumber, email, personalStatement):
+    def __init__(self, user_type, username, password, firstName, lastName, phoneNumber, email, personalStatement):
         """"""
         self.username = username
         self.password = password
@@ -32,6 +35,35 @@ class User(Base):
         self.phoneNumber = phoneNumber
         self.email = email
         self.personalStatement = personalStatement
+
+
+class Nominator(Base):
+    """"""
+    __tablename__ = "nominators"
+
+    id = Column(Integer, primary_key=True)
+    user_type = Column(String)
+    username = Column(String)
+    password = Column(String)
+    firstName = Column(String)
+    lastName = Column(String)
+    email = Column(String)
+
+    studentFirstName = Column(String)
+    studentLastName = Column(String)
+    # categories = {"Academic" : True, "Arts" : False, "Athletics" : True, "STEM": True, "Service" : False }
+
+
+    #----------------------------------------------------------------------
+    def __init__(self, user_type, username, password, firstName, lastName, email, categories):
+        """"""
+        self.username = username
+        self.user_type = user_type
+        self.password = password
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.categories = categories
 
 
 # create tables
